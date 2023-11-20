@@ -166,5 +166,3 @@ const fetchTopLanguages = async (
 
 export { fetchTopLanguages };
 export default fetchTopLanguages;
-
-fetchTopLanguages("JonathanBout", [], 1, 1).then(console.log);
