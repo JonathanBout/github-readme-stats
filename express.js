@@ -17,6 +17,6 @@ app.get("/gist", gistCard);
 app.get("/", (req, res) => {
   res.sendFile("/index.html");
 });
-app.get("*", (req, res) => {
+app.use((req, res) => {
   res.status(404).sendFile("/index.html");
 });
