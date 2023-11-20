@@ -159,8 +159,12 @@ const fetchTopLanguages = async (
       return result;
     }, {});
 
+  delete topLangs["ShaderLab"];
+
   return topLangs;
 };
 
 export { fetchTopLanguages };
 export default fetchTopLanguages;
+
+fetchTopLanguages("JonathanBout", [], 1, 1).then(console.log);
