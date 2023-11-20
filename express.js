@@ -15,8 +15,8 @@ app.get("/top-langs", langCard);
 app.get("/wakatime", wakatimeCard);
 app.get("/gist", gistCard);
 app.get("/", (req, res) => {
-  res.sendFile("./index.html");
+  res.sendFile("/index.html");
 });
 app.get("*", (req, res) => {
-  res.sendFile("./index.html");
+  res.status(404).sendFile("/index.html");
 });
