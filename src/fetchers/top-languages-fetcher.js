@@ -159,10 +159,6 @@ const fetchTopLanguages = async (
       return result;
     }, {});
 
-  delete topLangs["ShaderLab"];
-
-  logger.log("top languages: %s", Object.keys(topLangs));
-
   return topLangs;
 };
 
