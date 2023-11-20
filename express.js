@@ -14,3 +14,6 @@ app.get("/pin", repoCard);
 app.get("/top-langs", langCard);
 app.get("/wakatime", wakatimeCard);
 app.get("/gist", gistCard);
+app.get("/", (req, res) => {
+  res.sendFile("index.html");
+});
