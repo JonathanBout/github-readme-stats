@@ -7,16 +7,12 @@ import gistCard from "./api/gist.js";
 import express from "express";
 
 const app = express();
-app.listen(process.env.port || 9000);
+app.listen(process.env.port || 9000, () => {
+  console.log("Listening on port " + (process.env.port || 9000));
+});
 
 app.get("/", statsCard);
 app.get("/pin", repoCard);
 app.get("/top-langs", langCard);
 app.get("/wakatime", wakatimeCard);
 app.get("/gist", gistCard);
-app.get("/", (req, res) => {
-  res.sendFile("/index.html");
-});
-app.use((req, res) => {
-  res.status(404).sendFile("/index.html");
-});
