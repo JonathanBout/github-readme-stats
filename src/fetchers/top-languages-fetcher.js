@@ -63,6 +63,7 @@ const fetcher = (variables, token) => {
  * @param {string[]} exclude_repo List of repositories to exclude.
  * @param {number} size_weight Weightage to be given to size.
  * @param {number} count_weight Weightage to be given to count.
+ * @param {string[]} exclude_langs List of languages to exclude.
  * @returns {Promise<TopLangData>} Top languages data.
  */
 const fetchTopLanguages = async (
@@ -70,6 +71,7 @@ const fetchTopLanguages = async (
   exclude_repo = [],
   size_weight = 1,
   count_weight = 0,
+  exclude_langs = [],
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -158,6 +160,19 @@ const fetchTopLanguages = async (
       result[key] = repoNodes[key];
       return result;
     }, {});
+
+  // filter out excluded languages
+  if (exclude_langs) {
+    exclude_langs.forEach((lang) => {
+      // case insensitive language filtering
+      lang = lang.toLowerCase();
+      Object.keys(topLangs).forEach((key) => {
+        if (key.toLowerCase() === lang) {
+          delete topLangs[key];
+        }
+      });
+    });
+  }
 
   return topLangs;
 };
