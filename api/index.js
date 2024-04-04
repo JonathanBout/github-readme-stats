@@ -1,5 +1,4 @@
 import { renderStatsCard } from "../src/cards/stats-card.js";
-import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
   CONSTANTS,
@@ -11,8 +10,8 @@ import { fetchStats } from "../src/fetchers/stats-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
+  const username = process.env.GH_USERNAME;
   const {
-    username,
     hide,
     hide_title,
     hide_border,
@@ -40,18 +39,6 @@ export default async (req, res) => {
     show,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
-
-  if (blacklist.includes(username)) {
-    return res.send(
-      renderError("Something went wrong", "This username is blacklisted", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
-    );
-  }
 
   if (locale && !isLocaleAvailable(locale)) {
     return res.send(

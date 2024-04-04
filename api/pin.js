@@ -10,8 +10,8 @@ import { fetchRepo } from "../src/fetchers/repo-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
+  const username = process.env.GH_USERNAME;
   const {
-    username,
     repo,
     hide_border,
     title_color,

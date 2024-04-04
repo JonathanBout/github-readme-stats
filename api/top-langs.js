@@ -11,8 +11,8 @@ import { fetchTopLanguages } from "../src/fetchers/top-languages-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
+  const username = process.env.GH_USERNAME;
   const {
-    username,
     hide,
     hide_title,
     hide_border,
